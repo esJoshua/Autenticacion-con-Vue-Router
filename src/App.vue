@@ -6,7 +6,7 @@
         <router-link to="/login">Login</router-link>
       </template>
       <template v-else>
-        <button class="btn btn-link">Logout</button>
+        <button @click="logout" class="btn btn-link">Logout</button>
       </template>
     </nav>
     <router-view />
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "App",
@@ -23,6 +23,9 @@ export default {
     isloggedIn() {
       return this.loggedIn ? true : false;
     },
+  },
+  methods: {
+    ...mapActions(["logout"]),
   },
 };
 </script>

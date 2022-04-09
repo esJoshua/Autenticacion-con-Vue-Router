@@ -10,7 +10,7 @@ export default new Vuex.Store({
     loggedIn: false,
   },
   mutations: {
-    SET_LOGGED_IN(state, payload) {
+    SET_LOG(state, payload) {
       state.loggedIn = payload;
     },
   },
@@ -26,13 +26,18 @@ export default new Vuex.Store({
           password
         );
         // Signed in
-        commit("SET_LOGGED_IN", true);
+        commit("SET_LOG", true);
         localStorage.setItem("loggedIn", "true");
         router.push("/");
         console.log({ userCredential });
       } catch (error) {
         console.error(error);
       }
+    },
+    logout({ commit }) {
+      commit("SET_LOG", false);
+      localStorage.removeItem("loggedIn");
+      router.push("/login");
     },
   },
 });

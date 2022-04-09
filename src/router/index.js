@@ -6,12 +6,12 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: HomeView,
   },
   {
     path: "/login",
-    name: "Login",
+    name: "login",
     component: () => import("../views/LoginView.vue"),
   },
 ];
@@ -24,8 +24,8 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.getItem("loggedIn");
-  if (to.name !== "Login" && !isAuthenticated) next({ name: "Login" });
-  else if (to.name === "Login" && isAuthenticated) next({ name: "Home" });
+  if (to.name !== "login" && !isAuthenticated) next({ name: "login" });
+  else if (to.name === "login" && isAuthenticated) next({ name: "home" });
   else next();
 });
 
